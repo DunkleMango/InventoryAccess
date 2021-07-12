@@ -49,8 +49,8 @@ public class InventoryAccessCommand implements CommandCallable {
 
         // Check flags: -i -e
         String flag = args.get(0);
-        boolean isOpenInventory = flag.equals(InventoryAccessFlag.FLAG_OPEN_PLAYER_INVENTORY.flag);
-        boolean isOpenEnderChest = flag.equals(InventoryAccessFlag.FLAG_OPEN_ENDER_CHEST.flag);
+        boolean isOpenInventory = flag.equals(InventoryAccessFlag.FLAG_OPEN_PLAYER_INVENTORY.toString());
+        boolean isOpenEnderChest = flag.equals(InventoryAccessFlag.FLAG_OPEN_ENDER_CHEST.toString());
         if (isOpenInventory || isOpenEnderChest) {
             // Common subroutine for finding the target player
             if (args.size() != 2) {
@@ -93,9 +93,10 @@ public class InventoryAccessCommand implements CommandCallable {
         final List<String> args = getParsedArguments(arguments);
         if (args.isEmpty() || (args.size() == 1 && args.get(0).equals("-"))) {
             // Suggest flags
-            suggestions.add(InventoryAccessFlag.FLAG_OPEN_PLAYER_INVENTORY.flag);
-            suggestions.add(InventoryAccessFlag.FLAG_OPEN_ENDER_CHEST.flag);
-            suggestions.add(InventoryAccessFlag.FLAG_OPEN_ARMOR_INVENTORY.flag);
+            InventoryAccessFlag[] flags = InventoryAccessFlag.class.getEnumConstants();
+            for (InventoryAccessFlag flag : flags) {
+                suggestions.add(flag.toString());
+            }
         } else if (args.size() == 1) {
             // Suggest player-names
             Collection<Player> onlinePlayers = Sponge.getServer().getOnlinePlayers();
@@ -132,9 +133,15 @@ public class InventoryAccessCommand implements CommandCallable {
 
     @Override @NonnullByDefault @Nonnull
     public Text getUsage(CommandSource source) {
-        return Text.of(String.format("usage: invacc %s <player> | %s <player>",
-                InventoryAccessFlag.FLAG_OPEN_PLAYER_INVENTORY.flag,
-                InventoryAccessFlag.FLAG_OPEN_ENDER_CHEST.flag));
+        StringBuilder builder = new StringBuilder();
+        builder.append("usage: invacc ");
+        InventoryAccessFlag[] flags = InventoryAccessFlag.class.getEnumConstants();
+        for (int i = 0; i < flags.length - 1; ++i) {
+            builder.append(flags[i].getUsage());
+            builder.append(" | ");
+        }
+        builder.append(flags[flags.length - 1].getUsage());
+        return Text.of(builder.toString());
     }
 
     private void sendMessage(CommandSource source, Text message) {
