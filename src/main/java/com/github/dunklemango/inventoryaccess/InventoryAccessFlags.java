@@ -1,4 +1,4 @@
-package com.github.dunklemango.inventoryaccess.command;
+package com.github.dunklemango.inventoryaccess;
 
 public enum InventoryAccessFlags {
     FLAG_OPEN_PLAYER_INVENTORY("-i"),
