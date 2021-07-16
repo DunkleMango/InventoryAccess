@@ -1,13 +1,13 @@
 package com.github.dunklemango.inventoryaccess.command;
 
-public enum InventoryAccessFlag {
+public enum InventoryAccessFlags {
     FLAG_OPEN_PLAYER_INVENTORY("-i"),
     FLAG_OPEN_ENDER_CHEST("-e"),
     FLAG_OPEN_ARMOR_INVENTORY("-a");
 
     private final String flag;
 
-    private InventoryAccessFlag(String flag) {
+    private InventoryAccessFlags(String flag) {
         this.flag = flag;
     }
 
