@@ -1,7 +1,7 @@
-package com.github.dunklemango.inventoryaccess.command;
+package io.github.dunklemango.inventoryaccess.command;
 
-import com.github.dunklemango.inventoryaccess.InventoryAccessFlags;
-import com.github.dunklemango.inventoryaccess.InventoryAccessPlugin;
+import io.github.dunklemango.inventoryaccess.InventoryAccessFlags;
+import io.github.dunklemango.inventoryaccess.InventoryAccessPlugin;
 import com.google.common.collect.ImmutableMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

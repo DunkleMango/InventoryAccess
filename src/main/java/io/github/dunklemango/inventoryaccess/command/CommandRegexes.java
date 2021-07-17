@@ -1,4 +1,4 @@
-package com.github.dunklemango.inventoryaccess.command;
+package io.github.dunklemango.inventoryaccess.command;
 
 public enum CommandRegexes {
     REGEX_SPLIT_QUOTES_OR_WHITESPACE("(\"[^\"]*\")|(\\S+)");

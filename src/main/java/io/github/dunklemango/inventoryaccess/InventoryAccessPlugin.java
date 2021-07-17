@@ -1,24 +1,24 @@
-package com.github.dunklemango.inventoryaccess;
+package io.github.dunklemango.inventoryaccess;
 
-import com.github.dunklemango.inventoryaccess.command.InventoryAccessCommand;
+import io.github.dunklemango.inventoryaccess.command.InventoryAccessCommand;
 import com.google.inject.Inject;
 import org.slf4j.Logger;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.plugin.PluginContainer;
-import org.spongepowered.api.text.Text;
 
 import java.util.Optional;
 
-@Plugin(id = InventoryAccessPlugin.PLUGIN_ID, name = InventoryAccessPlugin.PLUGIN_NAME)
+@Plugin(id = InventoryAccessPlugin.PLUGIN_ID, name = InventoryAccessPlugin.PLUGIN_NAME,
+        description = InventoryAccessPlugin.PLUGIN_DESCRIPTION, authors = {"DunkleMango"})
 public class InventoryAccessPlugin {
     public static final String PLUGIN_ID = "inventoryaccess";
     public static final String PLUGIN_NAME = "Inventory Access";
+    public static final String PLUGIN_DESCRIPTION = "Enables the access of other players inventories.";
 
     @Inject
     private Logger logger;
