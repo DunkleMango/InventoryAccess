@@ -1,7 +1,7 @@
 package io.github.dunklemango.inventoryaccess;
 
-import io.github.dunklemango.inventoryaccess.command.InventoryAccessCommand;
 import com.google.inject.Inject;
+import io.github.dunklemango.inventoryaccess.command.InventoryAccessCommand;
 import org.slf4j.Logger;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.Sponge;
@@ -14,10 +14,12 @@ import org.spongepowered.api.plugin.PluginContainer;
 import java.util.Optional;
 
 @Plugin(id = InventoryAccessPlugin.PLUGIN_ID, name = InventoryAccessPlugin.PLUGIN_NAME,
-        description = InventoryAccessPlugin.PLUGIN_DESCRIPTION, authors = {"DunkleMango"})
+        version = InventoryAccessPlugin.PLUGIN_VERSION, description = InventoryAccessPlugin.PLUGIN_DESCRIPTION,
+        authors = {"DunkleMango"})
 public class InventoryAccessPlugin {
     public static final String PLUGIN_ID = "inventoryaccess";
     public static final String PLUGIN_NAME = "Inventory Access";
+    public static final String PLUGIN_VERSION = "1.0.0";
     public static final String PLUGIN_DESCRIPTION = "Enables the access of other players inventories.";
 
     @Inject
