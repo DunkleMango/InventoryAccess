@@ -164,8 +164,7 @@ public class InventoryAccessCommand implements CommandCallable {
             String incompletePlayerName = args.get(1).replaceAll("\"", "");
             Stream<Player> filteredPlayers = onlinePlayers.stream()
                     .filter(player -> player.getName().startsWith(incompletePlayerName));
-            filteredPlayers.forEach(player ->
-                    suggestions.add(player.getName().replaceFirst(incompletePlayerName, "")));
+            filteredPlayers.forEach(player -> suggestions.add(player.getName()));
         }
         return suggestions;
     }
