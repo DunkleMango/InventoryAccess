@@ -70,6 +70,12 @@ The orientation of the ender chest is not changed.
 
 ![alt text](./docs/images/inventories/enderChest.jpg)
 
+## Permissions
+To enable the access to any of the above mentioned commands, add the following permission to the list of permissions for the specified user group:
+```
+inventoryaccess.command.invacc
+```
+
 ## Additional information
 Changes to the inventories may not be immediately viewable in some cases.
 However, they should be realized immediately.
