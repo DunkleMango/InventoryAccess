@@ -159,12 +159,13 @@ public class InventoryAccessCommand implements CommandCallable {
                 suggestions.add(player.getName());
             }
         } else if (args.size() == 2) {
-            // Suggest player-names but filter based on characters already entered
-            Collection<Player> onlinePlayers = Sponge.getServer().getOnlinePlayers();
-            String incompletePlayerName = args.get(1).replaceAll("\"", "");
-            Stream<Player> filteredPlayers = onlinePlayers.stream()
-                    .filter(player -> player.getName().startsWith(incompletePlayerName));
-            filteredPlayers.forEach(player -> suggestions.add(player.getName()));
+            // Suggest player-names but filters based on characters already entered
+            String enteredPlayerName = args.get(1).replaceAll("\"", "");
+            // Autocompletion is done, if only one match remains and the last entered character is a whitespace
+            boolean isAutocompleteDone = (getMatchingPlayers(enteredPlayerName).count() == 1) && arguments.endsWith(" ");
+            if (!isAutocompleteDone) {
+                getMatchingPlayers(enteredPlayerName).forEach(player -> suggestions.add(player.getName()));
+            }
         }
         return suggestions;
     }
@@ -222,7 +223,7 @@ public class InventoryAccessCommand implements CommandCallable {
 
     private List<String> getParsedArguments(String arguments) {
         Pattern pattern = Pattern.compile(CommandRegexes.REGEX_SPLIT_QUOTES_OR_WHITESPACE.regex);
-        Matcher matcher = pattern.matcher(arguments);
+        Matcher matcher = pattern.matcher(arguments.trim());
         List<String> args = new ArrayList<>();
         while (matcher.find()) {
             args.add(matcher.group());
@@ -277,5 +278,10 @@ public class InventoryAccessCommand implements CommandCallable {
         equipItemStackFromSlot(slotLeggings,    targetPlayer, EquipmentTypes.LEGGINGS);
         equipItemStackFromSlot(slotBoots,       targetPlayer, EquipmentTypes.BOOTS);
         equipItemStackFromSlot(slotOffHand,     targetPlayer, EquipmentTypes.OFF_HAND);
+    }
+
+    public Stream<Player> getMatchingPlayers(String playerName) {
+        Collection<Player> onlinePlayers = Sponge.getServer().getOnlinePlayers();
+        return onlinePlayers.stream().filter(player -> player.getName().startsWith(playerName));
     }
 }
